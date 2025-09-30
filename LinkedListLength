@@ -1,0 +1,36 @@
+import java.util.*;
+public class LinkedListLength{
+    static class Node{
+        int data;
+        Node next;
+        
+        Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+        public static int getLength(Node head){
+            Node current = head;
+            int count = 0;
+            while(current != null){
+                count++;
+                current=current.next;
+            }
+            return count;
+        }
+        void display(Node head){
+            Node current = head;
+            System.out.print(current.data + "->");
+            current = current.next;
+            System.out.println("null");
+        }
+    }
+     public static void main(String[] args) {
+        // Creating linked list: 10 -> 20 -> 30 -> null
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+        //ehen getlenfgt methid is inside the any class then we have tocalss that parent class then only we can call this method
+        int length = Node.getLength(head);
+        System.out.println("Length of Linked List: " + length);
+    }
+}
