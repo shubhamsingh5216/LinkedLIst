@@ -1,0 +1,57 @@
+class LinkedList {
+    static class Node {
+        int data;
+        Node next;
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    Node head;
+
+    // Delete at a given index
+    public void deleteAtIndex(int index) {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (index == 0) {
+            head = head.next;
+            return;
+        }
+
+        Node current = head;
+        int count = 0;
+
+        while (current != null && count < index - 1) {
+            current = current.next;
+            count++;
+        }
+
+        if (current == null || current.next == null) {
+            System.out.println("Index out of range");
+            return;
+        }
+
+        current.next = current.next.next;
+    }
+
+    // Display method
+    public void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+}
+//LeetCodeSolution
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+}
