@@ -1,0 +1,83 @@
+import java.util.*;
+public class LinkedListDemo{
+    
+    static class Node{
+        int data;
+        Node next;
+        
+        Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+    }
+        Node head;
+        
+        public void insertAtBeggining(int data){
+            Node newNode = new Node(data);
+            newNode.next = head;
+            head = newNode;
+        }
+        public void insertAtLast(int data){
+            Node newNode = new Node(data);
+                if(head == null){
+                    head = newNode;
+                }
+                  Node current = head;
+            while(current.next != null){
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        public void insertAtIndex(int data,int index){
+            Node newNode = new Node(data);
+            
+            if(index == 0){
+                newNode.next = head;
+                head = newNode;
+                return;
+            }
+            Node current = head;
+            int count = 0;
+            while(current != null && count<index-1){
+                current = current.next;
+                count++;
+            }
+            if(current == null){
+                System.out.println("Tndex out of bound");
+                return;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
+            
+        }
+        void display(){
+            Node current = head;
+            while(current !=null){
+            System.out.println(current.data + "->");
+            current = current.next;
+        }
+        System.out.println("null");
+        }
+    public static void main(String [] args){
+        LinkedListDemo list = new LinkedListDemo();
+        list.insertAtBeggining(10);
+         list.insertAtBeggining(20);
+          list.insertAtBeggining(30);
+               System.out.println("After inserting at beginning:");
+        list.display(); 
+          // Insert at end
+        list.insertAtLast(40);
+        list.insertAtLast(50);
+
+        System.out.println("\nAfter inserting at end:");
+        list.display();  // 10 → 20 → 30 → 40 → 50 → null
+
+        // Insert at index
+         list.insertAtIndex(25, 2);
+        list.insertAtIndex(5, 0);
+        list.insertAtIndex(60, 10);
+
+        System.out.println("\nAfter inserting at specific index:");
+        list.display();
+    }
+}
