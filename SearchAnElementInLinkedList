@@ -1,0 +1,36 @@
+public class Main{
+    public static void main(String[] args){
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+        
+        Solution sol = new Solution();
+        int key1 = 20;
+        int key2 = 40;
+        
+        System.out.println("Searching for " + key1 + ": " + sol.searchKey(head, key1));
+        System.out.println("Searching for " + key2 + ": " + sol.searchKey(head, key2));
+    }
+}
+class Node{
+    int data;
+    Node next;
+    
+    Node(int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class Solution{
+    public boolean searchKey(Node head, int key){
+        Node current = head;
+        while(current != null){
+            if(current.data == key){
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+}
