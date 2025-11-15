@@ -1,1 +1,95 @@
+public class Main {
+    public static void main(String[] args) {
 
+        DoublyLinkedList list = new DoublyLinkedList();
+
+        // Insert at beginning
+        list.InsertAtBeggining(30);
+        list.InsertAtBeggining(20);
+        list.InsertAtBeggining(10);
+
+        // Insert at end
+        list.InsertAtEnd(40);
+        list.InsertAtEnd(50);
+
+        // Insert at index
+        list.InsertAtIndex(25, 2);   // Insert 25 at index 2
+
+        // Display the Circular Linked List
+        list.display();
+    }
+}
+
+
+class Node{
+    int data;
+    Node next;
+    
+Node(int data){
+    this.data = data;
+    this.next =null;
+}
+}
+class DoublyLinkedList{
+    Node head;
+    public void InsertAtBeggining(int data){
+        Node newNode = new Node(data);
+        
+        if(head == null){
+            head=newNode;
+            newNode.next=newNode;
+            return;
+        }
+        Node current = head;
+        while(current.next != head){
+            current = current.next;
+        }
+        newNode.next=head;
+        current.next=newNode;
+        head=newNode;
+        
+    }
+public void InsertAtEnd(int data){
+    Node newNode = new Node(data);
+    if(head == null){
+        head = newNode;
+        newNode.next = newNode;
+        return;
+    }
+    Node current = head;
+    while(current.next != head){
+        current=current.next;
+    }
+    current.next=newNode;
+    newNode.next = head;
+}
+public void InsertAtIndex(int data,int index){
+    Node newNode = new Node(data);
+    if(index == 0){
+        InsertAtBeggining(data);
+        return;
+    }
+    Node current = head;
+    int count = 0;
+    while(count<index-1){
+        current=current.next;
+        count++;
+    }
+    newNode.next = current.next;
+    current.next = newNode;
+}
+public void display(){
+    if(head == null){
+        System.out.print("LinkedList is empty");
+        return;
+    }
+    Node current = head;
+    System.out.print("head ->");
+    do{
+        System.out.print("<-[" + current.data + "] ->");
+        current = current.next;
+    }
+    while(current != head);
+        System.out.print("Back to head");
+    }
+}
