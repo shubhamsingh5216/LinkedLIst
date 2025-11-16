@@ -30,7 +30,7 @@ Node(int data){
     this.next =null;
 }
 }
-class DoublyLinkedList{
+class CircularSinglyLinkedList{
     Node head;
     public void InsertAtBeggining(int data){
         Node newNode = new Node(data);
