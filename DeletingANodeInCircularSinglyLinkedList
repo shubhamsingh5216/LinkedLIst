@@ -12,7 +12,7 @@ class CircularSinglyLinkedList{
         if(head == null){
             return;
         }
-        if(head.next == null){
+        if(head.next == head){
             head = null;
             return;
         }
@@ -27,29 +27,50 @@ class CircularSinglyLinkedList{
         if(head == null){
             return;
         }
-        if(head.next == null){
+        if(head.next == head){
             head = null;
             return;
         }
         Node current = head;
-        while(current.next != null){
+        Node previous = null;
+        while(current.next != head){
+            previous=current;
             current=current.next;
         }
-        current.next = head;
+        previous.next = head;
     }
-    public void DeleteAtIndex(){
+    public void DeleteAtIndex(int index){
         if(head == null){
             return;
         }
-        if(head.next == null){
+        if(head.next == head){
             head = null;
+            return;
+        }
+        if(index==0){
+            DeleteAtBeggining();
             return;
         }
         Node current = head;
         int count = 0;
         while(current.next != head && count<index-1){
             current=current.next;
+            count++;
         }
         current.next = current.next.next;
+    }
+    public void Display(){
+        if(head == null){
+            System.out.println("Circular Singly LinkedList Is Empty");
+            return;
+        }
+        Node current = head;
+        System.out.print("head ->");
+        do{
+            System.out.print("[" + current.data + "] ->");
+            current=current.next;
+        }
+        while(current!=head);
+        System.out.println("["+ head.data + "]");
     }
 }
