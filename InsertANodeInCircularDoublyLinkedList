@@ -1,1 +1,64 @@
-
+class Node{
+    int data;
+    Node next;
+    Node prev;
+Node(int data){
+    this.data = data;
+    this.next = null;
+    this.prev = null;
+}
+}
+class DoublyLinkedList{
+    Node head;
+    public void InsertAtBeggining(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            newNode.next = newNode;
+            newNode.prev = newNode;
+            head = newNode;
+            return;
+            }
+Node last = head.prev;
+    
+newNode.next =head;
+newNode.prev = last;
+    
+last.next = newNode;
+head.prev = newNode;
+}
+    public void InsertAtEnd(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            newNode.next = newNode;
+            newNode.prev = newNode;
+            head =newNode;
+            return;
+        }
+        Node last = head.prev;
+        
+        newNode.next = last;
+        current.next = newNode;
+        
+        last.prev = newNode;
+        newNode.prev=current;
+        }
+    }
+    public void InsertAtIndex(int data,int index){
+        Node newNode = new Node(data);
+            if(index == 0){
+            InsetAtBeggining(data);
+            return;
+            }
+            Node current = head;
+            int count = 0;
+            Node nextNode = current.next;
+            while(current.next != head && count<index-1){
+                count++;
+                newNode.next = nextNode;
+                current.next = newNode;
+                
+                newNode.prev = current;
+                nextNode.prev = newNode;
+        }
+    }
+}
