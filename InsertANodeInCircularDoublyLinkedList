@@ -25,6 +25,7 @@ newNode.prev = last;
     
 last.next = newNode;
 head.prev = newNode;
+head = newNode;
 }
     public void InsertAtEnd(int data){
         Node newNode = new Node(data);
@@ -36,29 +37,29 @@ head.prev = newNode;
         }
         Node last = head.prev;
         
-        newNode.next = last;
-        current.next = newNode;
+        last.next = newNode;
+        newNode.prev = last;
         
-        last.prev = newNode;
-        newNode.prev=current;
+        newNode.next = head;
+        head.prev = newNode;
         }
-    }
     public void InsertAtIndex(int data,int index){
-        Node newNode = new Node(data);
-            if(index == 0){
-            InsetAtBeggining(data);
+            if(index <= 0 || head == null){
+            InsertAtBeggining(data);
             return;
             }
+            Node newNode = new Node(data);
             Node current = head;
             int count = 0;
-            Node nextNode = current.next;
             while(current.next != head && count<index-1){
+                current = current.next;
                 count++;
-                newNode.next = nextNode;
-                current.next = newNode;
+            }
+                Node nextNode = current.next;
                 
+                current.next = newNode;
                 newNode.prev = current;
+                newNode.next = nextNode;
                 nextNode.prev = newNode;
-        }
     }
 }
