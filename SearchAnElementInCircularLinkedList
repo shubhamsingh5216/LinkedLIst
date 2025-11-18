@@ -1,1 +1,15 @@
-
+Public Boolean Search(int key){
+    if(head == null){
+        return false;
+    }
+    Node current = head;
+    do{
+        if(current.data == key){
+            return true;
+        }
+        current = current.next;
+    }
+    while(current != head);
+    return false;
+    }
+}
