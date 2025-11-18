@@ -1,1 +1,71 @@
-
+class Node{
+    int data;
+    Node next;
+    Node prev;
+Node(int data){
+    this.data = data;
+    this.next = null;
+    this.prev = null;
+}
+}
+class CircularDoublyLinkedList{
+    Node head;
+    public void DeleteAtBeggining(){
+        if(head == null){
+            return;
+        }
+        if(head.next == head){
+            head = null;
+            return;
+        }
+        Node last = head.prev;
+        
+        Node nextNode = head.next;
+        nextNode.prev = last;
+        last.next = nextNode;
+        
+        head = nextNode;
+    }
+    public void DeleteAtEnd(){
+        if(head == null){
+            return;
+        }
+        if(head.next == head){
+            head = null;
+            return;
+        }
+        Node last = head.prev;
+        Node SecondLast = last.prev;
+        
+        SecondLast.next = head;
+        head.prev = SecondLast;
+    }
+    public void DeleteAtIndex(int index){
+        if(head == null){
+            return;
+        }
+        if(index <= 0){
+            DeleteAtBeggining();
+            return;
+        }
+        if(head.next == head){
+            head = null;
+            return;
+        }
+        Node current = head;
+        int count = 0;
+        while(current.next !=head || count<index){
+            current = current.next;
+            count++;
+        }
+        Node prevNode = current.prev;
+        Node nextNode = current.next;
+        
+        prevNode.next =nextNode;
+        nextNode.prev = prevNode;
+        
+        if(current == head){
+            head = nextNode;
+        }
+    }
+}
